@@ -8,13 +8,12 @@
     position: fixed; /* Stick to top */
     top: 0;
     left: 0;
-    background-color: white; /* Adjust if needed */
     padding: 0 20px; /* Add some padding */
     z-index: 1000; /* Ensure it's above other elements */
 }
 
 .company-name {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px; /* Makes the text size responsive */
     font-weight: bold;
@@ -35,7 +34,7 @@
     justify-content: center; /* Centers them */
     flex-grow: 1; /* Allows it to take up remaining space */
     
-    width: 50%; /* Adjust width dynamically */
+    width: 5%; /* Adjust width dynamically */
     max-width: 600px; /* Prevents it from getting too wide */
     min-width: 250px; /* Prevents it from getting too small */
     
@@ -48,7 +47,7 @@
 
 .search-box {
     width: 300px; /* Fixed width */
-    height: 35px;
+    height: 25px;
     border-radius: 20px;
     padding: 8px 15px; /* Padding for text alignment */
     font-size: 16px;

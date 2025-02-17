@@ -1,7 +1,7 @@
 .movie-box {
     display: flex;
     text-align: center;
-    border: 1px solid black;
+    box-shadow: 0 0 15px 5px #ffffff; /* White glow effect */
     flex-direction: row;
     height: 90px;
     margin: 0;
@@ -12,6 +12,8 @@
 
     position: relative;
     top: 65px; /* Moves it down by 50px */
+
+    box-shadow: 0 0 20px rgba(177, 177, 177, 0.8); /* Cyan glow */
 }
 
 
@@ -28,8 +30,10 @@
 
 .movie-name {
     position: relative;
-    color: rgb(148, 0, 0);
+    color: rgb(0, 0, 0);
     margin-left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .nav-menu li {
@@ -55,10 +59,10 @@
 {
     display: flex;
     text-align: center;
-    border: 1px solid rgb(0, 176, 94);
     flex-direction: row;
-    height: 5px;
+    height: 950px;
     width: 100%;
     bottom: 34px;
+    margin-top: 5px;
     position: relative;
 }
