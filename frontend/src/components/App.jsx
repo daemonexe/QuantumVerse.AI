@@ -15,7 +15,8 @@ function App() {
       {/* Display searched text in MovieHeader */}
       <MovieHeader searchText={searchText} />
 
-      <Body />
+      <Body title={searchText}/>
+
     </Router>
   );
 }

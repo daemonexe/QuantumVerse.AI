@@ -3,7 +3,7 @@ import "../css/MovieBox.css";
 function MovieHeader({ searchText }) {  // Accept searchText as a prop
     return (
         <div className="movie-box">
-            <h1 className="movie-name">{searchText || "Enter a movie name and press search"}</h1> 
+            <h1 className="movie-name">{searchText || ""}</h1> 
             <nav>
                 <ul className="nav-menu">
                     <li><a href="index.html">Summary</a></li>

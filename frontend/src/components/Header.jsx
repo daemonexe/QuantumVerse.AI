@@ -10,9 +10,24 @@ function HeaderNav({ setSearchText }) {  // Accept setSearchText prop
         setInputText(event.target.value); // Update local input state
     };
 
-    const handleSearch = (event) => {
+    const handleSearch = async (event) => {
         event.preventDefault();
-        setSearchText(inputText); // Update global searchText in App.jsx
+
+        try{
+            const response = await fetch("http://localhost:5000/search", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ movieName: inputText }),
+            });
+
+            const data = await response.json();
+            console.log(`server response ${data.Poster}`);
+            setSearchText(data.Title);
+
+        }catch{
+            console.error("Error sending search query:", error);
+        }
+
     };
 
     return (
