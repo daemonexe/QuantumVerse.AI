@@ -13,7 +13,6 @@ function App() {
       <HeaderNav setSearchText={setSearchText} />
       
       {/* Display searched text in MovieHeader */}
-      <MovieHeader searchText={searchText} />
 
       <Body title={searchText}/>
 

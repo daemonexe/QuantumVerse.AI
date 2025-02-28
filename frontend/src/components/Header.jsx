@@ -12,6 +12,7 @@ function HeaderNav({ setSearchText }) {  // Accept setSearchText prop
 
     const handleSearch = async (event) => {
         event.preventDefault();
+        setInputText("");
 
         try{
             const response = await fetch("http://localhost:5000/search", {
@@ -34,6 +35,25 @@ function HeaderNav({ setSearchText }) {  // Accept setSearchText prop
         <div className="topbar">
             <img className="companyLogo" src={icon} alt="Company Logo" />
             <h1 className="company-name">QuantVerse.AI</h1>
+
+            
+        
+            <div className="movie-box">
+            <nav>
+                <ul className="nav-menu">
+                    <li><a href="index.html">Summary</a></li>
+                    <li><a href="about.html">Characters</a></li>
+                    <li><a href="services.html">References</a></li>
+                    <li><a href="contact.html">Quotes</a></li>
+                    <li><a href="contact.html">Quiz</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+
+
+
 
             <form className="search-container" onSubmit={handleSearch}>
                 <input 

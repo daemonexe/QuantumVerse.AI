@@ -1,19 +1,17 @@
 .movie-box {
     display: flex;
     text-align: center;
-    box-shadow: 0 0 15px 5px #ffffff; /* White glow effect */
     flex-direction: row;
     height: 90px;
     margin: 0;
     padding: 0;
     margin-bottom: 100px;
     width: 100%;
-    left: 0; /* Align to the left */
+    left: 300px; /* Align to the left */
+    top: 25px;
 
-    position: relative;
-    top: 65px; /* Moves it down by 50px */
+    position: absolute;
 
-    box-shadow: 0 0 20px rgba(177, 177, 177, 0.8); /* Cyan glow */
 }
 
 
@@ -21,37 +19,34 @@
     list-style: none;
     padding: 0;
     margin: 0 auto; /* Centers it horizontally */
-    padding-left: 25%;
+    padding-left: 0%;
+    gap: 30px;
     display: flex;
-    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #000000;
     position: relative;
     justify-content: center; /* Moves items to the center */
 }
 
 .movie-name {
     position: relative;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     margin-left: 30px;
     font-family: Arial, Helvetica, sans-serif;
 
 }
 
-.nav-menu li {
-    border-right: 2px solid white; /* Adds a separator */
-    position: relative;
-    
-    top: 15px;
-    padding: 15px 20px;
-}
+
 
 .nav-menu a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 18px;
 }
 
 .nav-menu a:hover {
-    color: yellow;
+    color: rgb(226, 226, 226);
 }
 
 
@@ -63,7 +58,7 @@
     height: 450px;
     width: 100%;
     bottom: 34px;
-    margin-top: 5px;
+    margin-top: 100px;
 
     position: relative;
 }
