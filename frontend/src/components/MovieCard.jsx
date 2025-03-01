@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 
 function MovieCard({ title }) {
     const [posterImage, setPosterImage] = useState(""); // Local state for input field
+    const [ratingImdb, setImdbRating] = useState("");
+    const [Genre, setGenre] = useState("");
+    const [year, setYear] = useState("");
 
     useEffect(() => {
         if (!title) return; // ✅ Prevents API call if title is empty
@@ -15,10 +18,17 @@ function MovieCard({ title }) {
                     body: JSON.stringify({ movieName: title }), // ✅ Use title instead of inputText
                 });
 
+
+
                 const data = await response.json();
                 console.log(`🎬 Server Response (Poster): ${data.Poster}`); // ✅ Logs Poster URL
                 setPosterImage(data.Poster);
-                console.log(`📜 summary : ${data.summary}`);
+                const imdbRating = data.Ratings.find(r => r.Source === "Internet Movie Database")?.Value;
+                const type = data.Genre;
+                setYear(data.Year);
+                setGenre(type);
+                setImdbRating(imdbRating);
+                console.log(`rating :  ${imdbRating}`);
 
             } catch (error) {  // ✅ Catch receives error parameter
                 console.error("❌ Error fetching movie:", error);
@@ -32,7 +42,17 @@ function MovieCard({ title }) {
     console.log(`posterImage is ${posterImage}`);
     return (
         <div className="movie-card">
+            <div className="poster-image">
             <img src={posterImage}/>
+            
+            </div>
+            <div className="info">
+                <p className="mov-name">{title} </p>
+                <p className="rating"> {ratingImdb}</p>
+                <p className="year"> {year}</p>
+                <p className="catogery">{Genre}</p>
+                
+            </div>
         </div>
     );
 }
