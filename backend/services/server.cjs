@@ -1,17 +1,15 @@
-require("dotenv").config(); // ✅ Load environment variables first
-
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const fetch = require("node-fetch"); // ✅ Ensure fetch is available
-const { Groq } = require("groq-sdk"); // ✅ Correct import for Groq SDK
+const fetch = require("node-fetch"); 
+const { Groq } = require("groq-sdk"); 
+const connectDB = require("./connect.cjs"); 
 
 const app = express();
-
 const OMDB_API_KEY = process.env.OMDB_API_KEY;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 app.use(express.json());
-
 app.use(cors({
     origin: "*",
     methods: ["POST", "GET"],
@@ -19,16 +17,19 @@ app.use(cors({
     credentials: true
 }));
 
-const groq = new Groq({ apiKey: GROQ_API_KEY }); // ✅ Corrected instantiation
+const groq = new Groq({ apiKey: GROQ_API_KEY });
 
 async function getGroqChatCompletion(prompt) {
     try {
         const response = await groq.chat.completions.create({
-            messages: [{ role: "user", content: `Write a summary about ${prompt}, also include summary for each season if applicalbe..` }],
+            messages: [{ role: "user", content: `Write a summary about ${prompt}, also include summary for each season, 
+                Just start with summary no title needed and ensure proper spacing if it has seasons start like summary,
+                i dont need overall at the end but seasons in ** ** 
+                dont start with the first seasons just say what happens be concise` }],
             model: "llama-3.2-11b-vision-preview",
         });
 
-        return response.choices[0].message.content; // ✅ Extract the summary content
+        return response.choices[0].message.content;
     } catch (error) {
         console.error("❌ Error making Groq API request:", error.message);
         return "Summary not available.";
@@ -49,18 +50,18 @@ app.post("/search", async (req, res) => {
             return res.status(404).json({ error: "Movie not found" });
         }
 
-        const summary = await getGroqChatCompletion(movieName); // ✅ Await the summary
+        const summary = await getGroqChatCompletion(movieName);
 
-        console.log("\n\n🎬 Movie Data from OMDB:", JSON.stringify(data, null, 2));
+        console.log("\n🎬 Movie Data from OMDB:", JSON.stringify(data, null, 2));
         console.log("📜 Groq Summary:", summary);
 
         res.json({ ...data, summary });
     } catch (error) {
-        console.error("Error fetching from OMDB:", error);
+        console.error("❌ Error fetching from OMDB:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
 app.listen(5000, () => {
-    console.log("\n 🟢🟢 >> Server Running at port: 5000 << 🟢🟢\n");
+    console.log("\n🕛 Server Started -> (Groq and OMDB API)");
 });
