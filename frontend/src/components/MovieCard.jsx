@@ -1,5 +1,6 @@
 import "../css/MovieBox.css";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types"
 
 function MovieCard({ title }) {
     const [posterImage, setPosterImage] = useState(""); // Local state for input field
@@ -8,7 +9,7 @@ function MovieCard({ title }) {
     const [year, setYear] = useState("");
 
     useEffect(() => {
-        if (!title) return; // ✅ Prevents API call if title is empty
+        if (!title) return; 
 
         const fetchMovie = async () => {
             try {
@@ -18,10 +19,8 @@ function MovieCard({ title }) {
                     body: JSON.stringify({ movieName: title }), // ✅ Use title instead of inputText
                 });
 
-
-
                 const data = await response.json();
-                console.log(`🎬 Server Response (Poster): ${data.Poster}`); // ✅ Logs Poster URL
+                console.log(`🎬 Server Response (Poster): ${data.Poster}`); 
                 setPosterImage(data.Poster);
                 const imdbRating = data.Ratings.find(r => r.Source === "Internet Movie Database")?.Value;
                 const type = data.Genre;
@@ -29,8 +28,7 @@ function MovieCard({ title }) {
                 setGenre(type);
                 setImdbRating(imdbRating);
                 console.log(`rating :  ${imdbRating}`);
-
-            } catch (error) {  // ✅ Catch receives error parameter
+            } catch (error) {  
                 console.error("❌ Error fetching movie:", error);
             }
         };
@@ -58,3 +56,7 @@ function MovieCard({ title }) {
 }
 
 export default MovieCard;
+
+MovieCard.propTypes = {
+    title: PropTypes.string, 
+};

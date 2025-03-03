@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../css/MovieBox.css";
+import PropTypes from "prop-types"; 
 
 function Summary({ movieName }) {
     const [summary, setSummary] = useState("");
@@ -22,7 +23,7 @@ function Summary({ movieName }) {
                     setSummary("Summary not available.");
                 }
             } catch (err) {
-                setSummary("Error fetching summary.");
+                setSummary(`Error fetching summary. ${err} `);
             }
         };
 
@@ -35,5 +36,11 @@ function Summary({ movieName }) {
         </div>
     );
 }
+
+
+Summary.propTypes = {
+    movieName: PropTypes.string, 
+};
+
 
 export default Summary;

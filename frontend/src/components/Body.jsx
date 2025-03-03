@@ -1,6 +1,8 @@
 import "../css/MovieBox.css"; 
 import MovieCard from "./MovieCard";
 import Summary from "./Summary";
+import PropTypes from "prop-types";
+
 
 function Body({title}) {
     return (
@@ -14,3 +16,8 @@ function Body({title}) {
 }
 
 export default Body;
+
+Body.propTypes = {
+    title: PropTypes.string, 
+};
+

@@ -1,21 +1,22 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import { useState } from "react"; // Import useState
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react"; 
 import HeaderNav from "./Header";
-import MovieHeader from "./MovieHeader";
 import Body from "./Body";
+import Quiz from "./Quiz";
 
 function App() {
-  const [searchText, setSearchText] = useState(""); // Stores final search query
+  const [searchText, setSearchText] = useState(""); // ✅ Stores final search query
 
   return (
     <Router>
-      {/* Pass setter function to update searchText when search is clicked */}
+      {/* ✅ Pass setter function so HeaderNav can update searchText */}
       <HeaderNav setSearchText={setSearchText} />
-      
-      {/* Display searched text in MovieHeader */}
 
-      <Body title={searchText}/>
-
+      {/* ✅ Use searchText inside Routes */}
+      <Routes>
+        <Route path="/" element={<Body title={searchText} />} />
+        <Route path="/quiz" element={<Quiz />} />
+      </Routes>
     </Router>
   );
 }
