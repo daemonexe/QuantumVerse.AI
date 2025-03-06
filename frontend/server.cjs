@@ -3,6 +3,7 @@ const cors = require("cors");
 const axios = require("axios"); // Use axios for better error handling
 
 const app = express();
+//
 
 // ✅ Correct CORS setup: Allow frontend requests from localhost:3000
 app.use(cors({
