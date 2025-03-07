@@ -17,3 +17,20 @@ A dynamic website that leverages AI to generate instant summaries for movies and
 
 ### AI Integration
 - 🤖 **Groq SDK** – AI-powered text generation (Mistral LLM)
+
+MVP done, 
+
+start working on actual release
+a homepage where the user types in the movie name or series name 
+
+then it takes time to load all api calls, generate content, json file for quiz
+generate quotes themes the website and then paste the content from json 
+and pastes it in...
+
+it has summary, characters, quiz, references
+content here is static gotten from api calls
+
+- this version needs
+--> proper css
+--> animations
+--> responsive design 
