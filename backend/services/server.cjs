@@ -1,67 +1,29 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const fetch = require("node-fetch"); 
-const { Groq } = require("groq-sdk"); 
-const connectDB = require("./connect.cjs"); 
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
-const OMDB_API_KEY = process.env.OMDB_API_KEY;
-const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const PORT = 5000;
 
-app.use(express.json());
-app.use(cors({
-    origin: "*",
-    methods: ["POST", "GET"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true
-}));
+app.use(cors()); 
+app.use(bodyParser.json()); 
 
-const groq = new Groq({ apiKey: GROQ_API_KEY });
+// POST endpoint to receive movie name
+app.post('/search', (req, res) => {
+    const { movieName } = req.body;
 
-async function getGroqChatCompletion(prompt) {
-    try {
-        const response = await groq.chat.completions.create({
-            messages: [{ role: "user", content: `Write a summary about ${prompt}, also include summary for each season, 
-                Just start with summary no title needed and ensure proper spacing if it has seasons start like summary,
-                i dont need overall at the end but seasons in ** ** 
-                dont start with the first seasons just say what happens be concise` }],
-            model: "llama-3.2-11b-vision-preview",
-        });
-
-        return response.choices[0].message.content;
-    } catch (error) {
-        console.error("❌ Error making Groq API request:", error.message);
-        return "Summary not available.";
+    if (!movieName) {
+        return res.status(400).json({ error: "Movie name is required" });
     }
-}
 
-app.post("/search", async (req, res) => {
-    try {
-        const { movieName } = req.body;
-        if (!movieName) {
-            return res.status(400).json({ error: "Movie name is required" });
-        }
+    // TO DO :: summary comes here
+    // TO DO :: Cover Page comes here
+    // TO DO :: Quiz Questions comes here 
 
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${movieName}`);
-        const data = await response.json();
+    res.json({ movieName: movieName });
 
-        if (data.Response === "False") {
-            return res.status(404).json({ error: "Movie not found" });
-        }
-
-        const summary = await getGroqChatCompletion(movieName);
-
-        console.log("\n🎬 Movie Data from OMDB:", JSON.stringify(data, null, 2));
-        console.log("📜 Groq Summary:", summary);
-
-        res.json({ ...data, summary });
-    } catch (error) {
-        console.error("❌ Error fetching from OMDB:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
 });
 
-app.listen(5000, () => {
-    console.log("\n🕛 Server Started -> (Groq and OMDB API)");
+app.listen(PORT, () => {
+    console.log(`🤓 >> Server running on http://localhost:${PORT}`);
 });
