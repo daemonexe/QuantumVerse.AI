@@ -1,42 +1,59 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.lp
+{
+
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; /* Aligns content to the top */
+    background-image: url('./assets/bg.jpg');
+    backdrop-filter: blur(100px); /* Blur effect */
+    height: 100vh; 
+    width: 100vw;
+    margin: 0px;
+    text-align: center; 
+    flex-direction: column;  
+    background-size: 1920;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-color: black; 
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+
+
+
+.logo
+{
+    position: relative;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    left: 43%;    
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.name
+{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+
+.content
+{
+    margin-top: 10%;
+}
+
+input[type=text] {
+    background-color: #3cbc8d00;
+    color: rgba(255, 255, 255, 0.694);
+    width: 200px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.595);
+    padding: 9px;
   }
-  to {
-    transform: rotate(360deg);
+
+  input[type=text]:focus
+  {
+    background-color: #3cbc8d00;
+    color: rgba(255, 255, 255, 0.694);
+    border: 1px solid rgba(255, 255, 255, 0.595);
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}

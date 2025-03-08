@@ -1,0 +1,51 @@
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules (Frontend & Backend)
+node_modules/
+
+# Build outputs (Frontend & Backend)
+dist/
+dist-ssr/
+out/
+.next/
+.vite/
+build/
+.cache/
+
+# Local environment variables (Backend)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Dependency lockfiles (optional)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# MacOS system files (if using Mac)
+._*
+.Spotlight-V100
+.Trashes
+
+# Temporary files
+*.tmp
+*.bak
