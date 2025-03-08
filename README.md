@@ -1,36 +1,12 @@
-# QuantumVerse.AI
-A dynamic website that leverages AI to generate instant summaries for movies and characters. Users can choose between detailed or concise summaries, making it easy to explore films and characters without spoilers. Perfect for quick insights and recommendations!
+# React + Vite
 
-## 🛠 Tech Stack
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Frontend (React)
-- ⚛️ **React.js** – Interactive UI library
-- 🌐 **React Router DOM** – Client-side routing
-- 🔗 **Axios** – Handles API requests
-- 🎨 **CSS** – Styling
+Currently, two official plugins are available:
 
-### Backend (Node.js + Express)
-- 🚀 **Node.js** – JavaScript runtime
-- 🏗 **Express.js** – API framework
-- 🔄 **CORS** – Secure cross-origin communication
-- 🔐 **Dotenv** – Environment variable management
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### AI Integration
-- 🤖 **Groq SDK** – AI-powered text generation (Mistral LLM)
+## Expanding the ESLint configuration
 
-MVP done, 
-
-start working on actual release
-a homepage where the user types in the movie name or series name 
-
-then it takes time to load all api calls, generate content, json file for quiz
-generate quotes themes the website and then paste the content from json 
-and pastes it in...
-
-it has summary, characters, quiz, references
-content here is static gotten from api calls
-
-- this version needs
---> proper css
---> animations
---> responsive design 
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
