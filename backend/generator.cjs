@@ -16,13 +16,28 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 // Function to generate quiz content JSON using Groq AI
 async function getQuizContentJSON(prompt, movie) {
     try {
-        const response = await groq.chat.completions.create({
-            messages: [{ role: "user", content: `${prompt} ${movie}` }],
-            model: "llama-3.2-11b-vision-preview",
-        });
 
-        let quizContent = response.choices[0].message.content;
-        return quizContent;
+        let valid_json = false;
+        while (!valid_json)
+        {
+            const response = await groq.chat.completions.create({
+                messages: [{ role: "user", content: `${prompt} ${movie}` }],
+                model: "llama-3.2-11b-vision-preview",
+            });
+    
+            let quizContent = response.choices[0].message.content;
+            try{
+                JSON.parse(quizContent)
+                console.log("valid json file")
+                valid_json = true;
+                return quizContent;
+
+            }catch
+            {
+                console.log('failed miserably');
+            }
+        }
+
 
     } catch (error) {
         console.error("❌ Error making Groq API request:", error.message);
@@ -52,5 +67,26 @@ async function getMovieSummary(prompt, movie) {
     }
 }
 
+async function isValid(prompt, movie) {
+    try {
+        const response = await groq.chat.completions.create({
+            messages: [{ role: "user", content: `${prompt} ${movie}` }],
+            model: "llama-3.2-11b-vision-preview",
+        });
+
+        if (!response?.choices?.length) {
+            throw new Error("Invalid response from Groq API.");
+        }
+
+        let bool = response.choices[0].message.content;
+        return bool;
+
+    } catch (error) {
+        console.error("❌ Error making Groq API request:", error.message);
+        return "Summary not available.";
+    }
+}
+
+
 // ✅ Export functions
-module.exports = { getMovieSummary, getQuizContentJSON };
+module.exports = { getMovieSummary, getQuizContentJSON, isValid };

@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const {fetchMovieDetails} = require("./details.cjs")
-const {getMovieSummary, getQuizContentJSON} = require('./generator.cjs');
+const {getMovieSummary, getQuizContentJSON, isValid} = require('./generator.cjs');
 const app = express();
 const PORT = 5000;
 
@@ -32,16 +32,28 @@ The JSON must strictly follow this format:
   ]
 }
 
-Requirements:
-1. **Use proper JSON formatting** with double quotes (\") around all keys and string values.
-2. **Do NOT use single quotes (')** anywhere in the JSON output.
-3. Generate **exactly 15 medium-level questions** related to the movie’s **plot, characters, or production details**.
-4. The correct answer **must always be the first in the options list**, but **shuffle other options randomly**.
-5. **Ensure all options are relevant** and not obviously incorrect.
-6. **Do NOT include any explanations or additional text** outside the JSON format.
-7. The response must be a **pure JSON structure**, with no markdown, explanations, or extra text.
-8. this output is gonna be a string in js, so do not add special characters like / the other one etc.
+### Strict Formatting Rules:
+1. **The output must be a valid JSON string**, correctly formatted for JavaScript parsing.
+2. **Use ONLY double quotes (")** for keys and string values. Do **NOT** use backslashes (\\), newlines (\\n), or special escape sequences.
+3. **Do NOT include any markdown, code blocks, or extra explanations**. The response must be **pure JSON only**.
+4. **Ensure exactly 15 unique trivia questions** related to the movie's **plot, characters, or production details**.
+5. **The correct answer must always be the first in the options array**, but **shuffle other options randomly**.
+6. **Ensure all options are realistic and related to the movie**.
+7. **No non-ASCII characters, special symbols, or escape sequences.** The output must be **plain JSON text**.
+8. The response **must be a valid JavaScript string** when stored in a variable—do **not** use characters that require escaping in JavaScript.
+
+- All keys and values use double quotes ("").
+- There are NO trailing commas.
+- Nested arrays and objects are properly formatted.
+
+
 `;
+
+let condition = `
+with your knowledge check if is a valid movie or tv show if you could not find 
+anything just return a string 'false', if you did 'true'
+
+`
 
 module.exports = { quizPrompt };
 
@@ -50,19 +62,32 @@ module.exports = { quizPrompt };
 app.post('/search', async (req, res) => {
     const { movieName } = req.body;
 
+    let isMovie = await isValid(condition,movieName);
+
     if (!movieName) {
         return res.status(400).json({ error: "Movie name is required" });
     }
+    console.log(isMovie);
+    if (isMovie === "True" || "true")
+    {
 
-    // API calls and responses..
-    let summary = await getMovieSummary(summaryPrompt,movieName);
-    let questions = await getQuizContentJSON(quizPrompt, movieName);
-    let questionJSON = JSON.parse(questions);
-    let movieData = await fetchMovieDetails(movieName);
+      
+      let movieData = await fetchMovieDetails(movieName);
+
+      let summary = await getMovieSummary(summaryPrompt,movieName);
+
+      let questions = await getQuizContentJSON(quizPrompt, movieName);
+      let questionJSON = JSON.parse(questions);
+
+      res.json({ movieName: movieName, movieSummary: summary, 
+        quizContent: questionJSON, details : movieData });
 
     // returning a .JSON file containing all the details needed to be filled in 
-    res.json({ movieName: movieName, movieSummary: summary, 
-        quizContent: questionJSON, details : movieData });
+
+    }else{
+      console.log("could not find movie sad");
+    }
+
 
 });
 
