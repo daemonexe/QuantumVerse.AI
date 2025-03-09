@@ -12,6 +12,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "groq-sdk": "^0.15.0"
+    "groq-sdk": "^0.15.0",
+    "react-router-dom": "^7.3.0"
   }
 }
