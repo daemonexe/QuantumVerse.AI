@@ -88,5 +88,4 @@ async function isValid(prompt, movie) {
 }
 
 
-// ✅ Export functions
 module.exports = { getMovieSummary, getQuizContentJSON, isValid };
