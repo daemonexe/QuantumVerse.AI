@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import './App.css';
@@ -10,15 +10,50 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  // ✅ Fetch movie suggestions from OMDB API
+  useEffect(() => {
+    const fetchMovies = async () => {
+      if (searchTerm.length < 3) {
+        setMovies([]); // Clear results if input is too short
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `http://www.omdbapi.com/?s=${searchTerm}&apikey=3816ca8e`
+        );
+        const data = await response.json();
+
+        if (data.Search) {
+          setMovies(data.Search); // ✅ Store search results
+        } else {
+          setMovies([]); // No results
+        }
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    };
+
+    const debounceTimeout = setTimeout(fetchMovies, 300); // ✅ Debounce API calls
+    return () => clearTimeout(debounceTimeout);
+  }, [searchTerm]);
+
+  // ✅ Handle selection from dropdown
+  const handleSelectMovie = (movie) => {
+    setSelectedMovie(movie);
+    setInputValue(movie.Title); // ✅ Fill input field
+    setMovies([]); // Hide dropdown
+  };
+
   // Page transition animation variants
   const pageVariants = {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.8 } },
     exit: { opacity: 0, y: 20, transition: { duration: 0.5 } }
-  };
-
-  const goToNewPage = () => {
-    navigate(`/content`);
   };
 
   const handleSubmit = async () => {
@@ -32,10 +67,11 @@ function Home() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ movieName: inputValue }),
         });
-        const data = await response.json();
-        console.log("Response from server:", data);
+
+        const data = await response.json(); // ✅ Get response JSON
         setIsLoading(false);
-        goToNewPage();
+
+        navigate(`/content`, { state: { movieData: data } }); // ✅ Pass data to next page
 
       } catch (error) {
         console.error("Error:", error);
@@ -103,14 +139,32 @@ function Home() {
                   "AI-powered platform that automatically generates fan pages for movies and TV shows."
                 </motion.p>
 
-                <input
-                  className='input'
-                  type="text"
-                  placeholder="Enter a movie or TV show name..."
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                />
+                <div className="search-container">
+                  <input
+                    className='input'
+                    type="text"
+                    placeholder="Enter a movie or TV show name..."
+                    value={inputValue}
+                    onChange={(e) => {
+                      setInputValue(e.target.value);
+                      setSearchTerm(e.target.value); // ✅ Update searchTerm for dropdown
+                    }}
+                    onKeyDown={handleKeyDown}
+                  />
+
+                  {/* ✅ Dropdown menu */}
+                  {movies.length > 0 && (
+                    <ul className="dropdown-menu">
+                      {movies.map((movie) => (
+                        <li key={movie.imdbID} onClick={() => handleSelectMovie(movie)}>
+                          <img src={movie.Poster} alt={movie.Title} width="40" />
+                          {movie.Title} ({movie.Year})
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+
                 <button onClick={handleSubmit}>Generate</button>
               </>
             )}

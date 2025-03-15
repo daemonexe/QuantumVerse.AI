@@ -8,9 +8,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1.5px solid rgb(255, 255, 255);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-    background-color: rgb(14, 14, 14);
+    background-color: rgba(14, 14, 14, 0.216);
     width: 500px;
     height: 35px;
     margin: 5px auto;
@@ -28,26 +28,28 @@
 .navButton {
     display: flex;
     border-radius: 20px;
-    border: 1px solid black;
-    background-color: black;
-    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(143, 143, 143);
     width: 25%;
-    height: 100%;
+    height: 90%;
+    bottom: 5px;
+
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(50px) brightness(0.8) contrast(5.2);
 }
 
 .navButtonSelected {
     display: flex;
     border-radius: 20px;
-    border: 1px solid black;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(143, 143, 143);
     width: 25%;
     height: 90%;
+    bottom: 5px;
+
     justify-content: center;
     align-items: center;
+
 }
 
 /* MOVIE CARD CONTAINER */
@@ -84,21 +86,20 @@
     display: flex;
     align-items: center; /* Centers the image vertically */
     justify-content: flex-start; /* Aligns it to the left */
-    width: 200px; /* Adjust size as needed */
-    height: 250px;
-    border: 1px solid green;
-    margin-right: 20px; 
+    width: auto; /* Adjust size as needed */
+    height: auto;
+    margin-right: 25px;
+    margin-left: 30px; 
 }
 /* MOVIE CONTENT (RIGHT SIDE) */
 .movie-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    border: solid 1px yellow;
     padding: 10px;
-    width: 300px;
-    height: 50px;
+    width: 75%;
+    height: 85%;
     color: white;
+    margin: 0px;
 }
 
 .movie-content h2 {
@@ -109,4 +110,39 @@
 .movie-content p {
     font-size: 1rem;
     line-height: 1.5;
+}
+
+.poster
+{
+    width: 250px;
+}
+
+.title
+{
+    margin: 0px;
+    font-size: 45px;
+    padding: 10px;
+}
+
+.parah
+{
+    margin: 0px;
+
+    padding:10px;
+}
+
+.summaryButton
+{
+    display: flex;
+    border-radius: 20px;
+    border: solid 1px rgba(255, 255, 255, 0.412);
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    width: 29%;
+    height: 15%;
+    bottom: 5px;
+    justify-content: center;
+    text-align: center;
+    align-items: center; /* Centers the image vertically */
+
 }
