@@ -1,0 +1,75 @@
+.topbar {
+    background-color: #0D0D0D; /* Sets the background to dark black */
+    display: flex;
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Space items evenly */
+    height: 70px;
+    width: 100%;
+    position: fixed; /* Stick to top */
+    top: 0;
+    left: 0;
+    padding: 0 20px; /* Add some padding */
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.company-name {
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px; /* Makes the text size responsive */
+    font-weight: bold;
+    padding-right: 1050px;
+}
+
+
+.companyLogo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center; /* Aligns input and button */
+    justify-content: center; /* Centers them */
+    flex-grow: 1; /* Allows it to take up remaining space */
+    
+    width: 5%; /* Adjust width dynamically */
+    max-width: 600px; /* Prevents it from getting too wide */
+    min-width: 250px; /* Prevents it from getting too small */
+    
+    position: absolute; /* Keeps it positioned at the same place */
+    right: 10%; /* Adjust this value for fine-tuning */
+    top: 1; /* Adjust if needed */
+    transform: translateX(10%); /* Moves it slightly to match your layout */
+}
+
+
+.search-box {
+    width: 300px; /* Fixed width */
+    height: 20px;
+    border-radius: 40px;
+    padding: 8px 15px; /* Padding for text alignment */
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: #f0f0f0;
+    margin-left: 10px; /* Space between input and button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-button:hover {
+    background-color: #ddd;
+}
