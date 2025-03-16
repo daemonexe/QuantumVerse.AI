@@ -1,0 +1,149 @@
+.movie-box {
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    height: 90px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 100px;
+    width: 100%;
+    left: 300px; /* Align to the left */
+    top: 25px;
+
+    position: absolute;
+
+}
+
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto; /* Centers it horizontally */
+    padding-left: 0%;
+    gap: 30px;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #000000;
+    position: relative;
+    justify-content: center; /* Moves items to the center */
+}
+
+.movie-name {
+    position: relative;
+    color: rgb(255, 255, 255);
+    margin-left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+.nav-menu a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+.nav-menu a:hover {
+    color: rgb(226, 226, 226);
+}
+
+
+.content-box
+{
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    height: 450px;
+    width: 100%;
+    bottom: 34px;
+    margin-top: 100px;
+
+    position: relative;
+}
+
+.movie-card{
+    border-radius: 15px;
+
+    text-align: center;
+    height: 400px;
+    width: 300px;
+    position: relative;
+    top: 15px;
+
+}
+
+.poster-image
+{
+    border-radius: 15px;
+    display: flex;
+    text-align: center;
+    height: 410px;
+    width: 300px;
+    position: relative;
+}
+
+.summary-box
+{
+    display: flex;
+    text-align: left;
+    
+    height: 450px;
+    width: 990px;
+    position: relative;
+    top: 15px;
+    padding: 20px;
+    box-shadow: inset 0 0 1px 0px;
+    overflow-y:auto;
+}
+
+.info
+{
+    display: flex;
+    width: 270px;
+    height: 70px;
+    position: absolute;
+    top: 420px;
+
+    text-align: left;
+    align-items: flex-start; /* Align text to the top */
+}
+
+.mov-name {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    margin: 0;
+    font-size: 20px;
+    left: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.rating
+{
+    color: rgb(0, 0, 0);
+    position: absolute;
+    margin: 0;
+    left: 85%;
+    top: 4px;
+}
+
+.catogery
+{
+    color: rgb(0, 0, 0);
+    position: absolute;
+    margin: 0;
+    top:25px;
+    left: 10px;
+}
+
+
+.year
+{
+    color: rgb(0, 0, 0);
+    position: absolute;
+    margin: 0;
+    top: 25px;
+    left: 198px;
+}
+
